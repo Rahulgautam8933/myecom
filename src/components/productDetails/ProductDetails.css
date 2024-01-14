@@ -1,0 +1,93 @@
+.productDetails {
+    margin: 8rem auto;
+    width: 90%;
+}
+
+.productDetails1 h3 {
+    color: red;
+}
+
+
+
+.contentitem button {
+    /* background-color: white; */
+    color: black;
+    padding: 0.7rem 1rem;
+    font-family: 'Jost', sans-serif;
+    border: none;
+    position: relative;
+    z-index: 13;
+}
+
+.contentitem button::before {
+    content: '';
+    display: block;
+    position: absolute;
+    color: white;
+    width: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    /* color: #c19d60; */
+    border-bottom: 1px solid #c19d60;
+    background-color: #c19d60;
+    /* background: #000; */
+    transition: all 0.3s;
+    z-index: 12;
+}
+
+.contentitem button:hover::before {
+    width: 100%;
+    color: white;
+    z-index: -2;
+    background-color: #c19d60;
+}
+
+.contentitem button:hover {
+    color: white;
+    z-index: 15;
+}
+
+.detailsup .productDetails1 {
+    margin-top: 30px;
+}
+
+
+.reviewscontainer {
+    text-align: center;
+}
+
+.reviewscontainer hr {
+    width: 11rem;
+    margin: auto;
+}
+
+.reviesboxs {
+    margin-top: 1rem;
+}
+
+.productCount {
+    display: flex;
+    gap: 7px;
+}
+
+.productCount button {
+    border: none;
+    /* padding: 12px 1rem; */
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.productCount input {
+
+    text-align: center;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+
+.productCount input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

@@ -1,0 +1,94 @@
+.homeMain {
+    width: 100%;
+    /* height: 100vh; */
+
+}
+
+/* .carousel-item {
+    position: relative;
+    width: 100%;
+    height: 100vh
+} */
+
+/* .contentitem {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} */
+
+.contentitem h3,
+p {
+    color: white;
+    font-family: 'Jost', sans-serif;
+}
+
+.contentitem button {
+    /* background-color: white; */
+    color: black;
+    padding: 0.7rem 2rem;
+    font-family: 'Jost', sans-serif;
+    border: none;
+    position: relative;
+    z-index: 13;
+}
+
+.contentitem button::before {
+    content: '';
+    display: block;
+    position: absolute;
+    color: white;
+    width: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    /* color: #c19d60; */
+    border-bottom: 1px solid #c19d60;
+    background-color: #c19d60;
+    /* background: #000; */
+    transition: width 1s;
+    z-index: 12;
+}
+
+.contentitem button:hover::before {
+    width: 100%;
+    color: white;
+    z-index: -2;
+    background-color: #c19d60;
+}
+
+.contentitem button:hover {
+    color: white;
+    z-index: 15;
+}
+
+.carousel-caption {
+    position: absolute;
+    /* right: 15%; */
+    bottom: 1.25rem;
+    /* left: 15%; */
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    color: #fff;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+
+
+
+
+
+
+.home-latest-product{
+    width: 90%;
+    margin: auto;
+}
+
+
+

@@ -1,0 +1,9 @@
+.spin-example{
+    width: 100%;
+    height: 25vw;
+    display: flex;
+    /* background-color: black; */
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}

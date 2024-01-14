@@ -1,0 +1,51 @@
+.cardcontainer .card1 {
+    background-color: #EDF2F3;
+    /* padding: 0.6rem; */
+}
+
+.cardcontainer a {
+    text-decoration: none;
+}
+
+.cardcontainer {
+    margin: 0.8rem 0rem;
+}
+
+.cardcontainer:hover {
+    transform: scale(1.02);
+    /* transition: all 0.3s; */
+}
+
+.card1 p {
+    color: rgb(121, 94, 94);
+}
+
+.card1 p:hover {
+    color: red;
+    transition: all 1s;
+}
+
+.card1 h5 {
+    color: red;
+
+}
+
+.card1 h5 s {
+    color: rgb(163, 157, 157);
+    font-size: 0.8rem;
+
+}
+
+.card1 .cardimg {
+    height: 30vh;
+    object-fit: contain;
+}
+
+@media (max-width:760px) and (min-width:0px) {
+
+    .card1 .cardimg {
+        height: 40vh;
+        width: 100%;
+        object-fit: contain;
+    }
+}

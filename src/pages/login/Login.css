@@ -1,0 +1,79 @@
+.logincontainer {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(24 6 6 / 74%);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.logincontainer form {
+    background-color: white;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    text-align: center;
+    position: relative;
+}
+
+.logincontainer form span {
+    font-size: 2rem;
+    position: absolute;
+    top: 0;
+    right: 5px;
+    cursor: pointer;
+}
+
+.logincontainer form input {
+    width: 100%;
+    margin: 0.4rem 0rem;
+    padding: 0.6rem;
+}
+
+.logincontainer form h6 {
+    color: #555;
+    margin-top: 0.6rem;
+    margin-bottom: 1.2rem;
+}
+
+.logincontainer form button {
+    width: 100%;
+    margin: 0.4rem 0rem;
+    padding: 0.6rem;
+    border: none;
+    background-color: black;
+    color: white;
+}
+
+.logincontainer form .registerbutton {
+    width: 100%;
+    margin: 0.4rem 0rem;
+    padding: 0.6rem 0rem;
+    border: none;
+    background-color: rgb(199, 196, 196);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+
+
+
+
+/* registration */
+
+.logincontainer form lable h5 {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.logincontainer form .file {
+    padding: 0;
+    margin: 0;
+}
