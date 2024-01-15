@@ -11,11 +11,13 @@ import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import Cart from "../cart/Cart";
+import { useAppState } from "../../context/AppState";
 const Header = () => {
   const navigator = useNavigate();
+  const { product, loading, profile, token } = useAppState();
   const [cartCount, setCartCount] = useState(0);
   const [sidebar, setSidebar] = useState(true);
-  const [token, setToken] = useState(null);
+  // const [token, setToken] = useState(null);
   const updateCartCount = () => {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
@@ -31,10 +33,10 @@ const Header = () => {
   };
 
   useEffect(() => {
-    const token = Cookies.get("UserToken");
-    setToken(token);
+    // const token = Cookies.get("UserToken");
+    // setToken(token);
     updateCartCount(); // Initial update
-  }, []);
+  }, [updateCartCount, token, cartCount, logout]);
   return (
     <>
       <div className="navbarcontainer">
@@ -55,9 +57,6 @@ const Header = () => {
               </li>
               <li>
                 <Link to="/">Contact </Link>
-              </li>
-              <li>
-                <Link to="/admin">Admin </Link>
               </li>
             </ul>
 
@@ -105,12 +104,24 @@ const Header = () => {
                     </p>
                   )}
 
-                  <p>
+                  <p onClick={() => navigator("/profile")}>
                     <span>
                       <FaUser />
                     </span>
                     Profile
                   </p>
+
+                  {profile?.role == "admin" ? (
+                    <p onClick={() => navigator("/admin")}>
+                      <span>
+                        <FaUser />
+                      </span>
+                      Admin
+                    </p>
+                  ) : (
+                    ""
+                  )}
+
                   <p onClick={() => navigator("/myOrders")}>
                     <span>
                       <FaUser />

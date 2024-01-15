@@ -1,5 +1,6 @@
 // AppState.js
 import axios from "axios";
+import Cookies from "js-cookie";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 const AppStateContext = createContext();
@@ -7,23 +8,13 @@ const AppStateContext = createContext();
 const AppStateProvider = ({ children }) => {
   let [product, setProduct] = useState([]);
   let [loading, setLoading] = useState(true);
+  let [profile, setProfile] = useState([]);
+
+  const token = Cookies.get("UserToken");
 
   //
 
   const [cart, setCart] = useState([]);
-
-  useEffect(() => {
-    const storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-      const parsedCart = JSON.parse(storedCart);
-      if (Array.isArray(parsedCart)) {
-        setCart(parsedCart);
-      } else {
-        // Handle the case where the stored cart is not an array
-        console.error("Invalid cart format:", parsedCart);
-      }
-    }
-  }, []);
 
   const addToCart = (item) => {
     // Implement your logic to add items to the cart
@@ -55,6 +46,23 @@ const AppStateProvider = ({ children }) => {
 
   //
 
+  const userdetails = async () => {
+    try {
+      const data = await axios.get(
+        `${import.meta.env.VITE_API_KEY}/api/v1/me`,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+      console.log(data?.data?.user);
+      setProfile(data?.data?.user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getProduct = async () => {
     try {
       const data = await axios.get(
@@ -70,6 +78,20 @@ const AppStateProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    const storedCart = localStorage.getItem("cart");
+    if (storedCart) {
+      const parsedCart = JSON.parse(storedCart);
+      if (Array.isArray(parsedCart)) {
+        setCart(parsedCart);
+      } else {
+        // Handle the case where the stored cart is not an array
+        console.error("Invalid cart format:", parsedCart);
+      }
+    }
+  }, [cart, addToCart, removeFromCart, token]);
+
+  useEffect(() => {
+    userdetails();
     getProduct();
   }, []);
 
@@ -81,6 +103,8 @@ const AppStateProvider = ({ children }) => {
     removeFromCart,
     updateItemCount,
     calculateTotal,
+    profile,
+    token,
   };
 
   return (

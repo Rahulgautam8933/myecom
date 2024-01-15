@@ -74,7 +74,7 @@ const ProductDetails = () => {
       localStorage.setItem("cart", JSON.stringify(updatedCart));
     }
     toast.success("Successfully Added To Cart");
-    window.location.reload();
+    // window.location.reload();
   };
 
   useEffect(() => {
@@ -83,7 +83,7 @@ const ProductDetails = () => {
     if (storedCart) {
       setCart(JSON.parse(storedCart));
     }
-  }, []);
+  }, [addToCart]);
 
   useEffect(() => {
     details();

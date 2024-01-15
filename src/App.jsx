@@ -18,6 +18,7 @@ import MyOrders from "./components/orders/myOrders/MyOrders";
 import OrderDetails from "./components/orders/myOrderDetails/OrderDetails";
 import Footer from "./components/footer/Footer";
 import Dashboard from "./components/Admin/Dashboard";
+import Profile from "./components/profile/Profile";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path="/myOrders" element={<MyOrders />} />
           <Route path="/myOrder/:id" element={<OrderDetails />} />
           <Route path="/admin" element={<Dashboard />}></Route>
+          <Route path="/profile" element={<Profile />}></Route>
         </Routes>
         <Footer />
       </Router>
