@@ -44,6 +44,7 @@ function App() {
           <Route path="/admin" element={<Dashboard />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
         </Routes>
+
         <Footer />
       </Router>
     </>
