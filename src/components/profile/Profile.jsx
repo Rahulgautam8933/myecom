@@ -22,7 +22,7 @@ const Profile = () => {
     console.log(formdata);
     try {
       const res = await axios.put(
-        `http://localhost:4000/api/v1/password/update`,
+        `${import.meta.env.VITE_API_KEY}/api/v1/password/update`,
         {
           ...formdata,
         },
