@@ -83,7 +83,7 @@ const ProductDetails = () => {
     if (storedCart) {
       setCart(JSON.parse(storedCart));
     }
-  }, [addToCart]);
+  }, []);
 
   useEffect(() => {
     details();

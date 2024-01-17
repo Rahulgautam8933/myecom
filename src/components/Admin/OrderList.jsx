@@ -2,11 +2,17 @@ import { Table, Modal, Select } from "antd";
 import axios from "axios";
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
-
+import toast from "react-hot-toast";
+import './Dashboard.css'
+import { Card, Col, Row } from "react-bootstrap";
 const OrderList = () => {
   const token = Cookies.get("UserToken");
   const [orderData, setOrderData] = useState([]);
   const [deletedProductId, setDeletedProductId] = useState(null);
+  const [orderDetail, setOrderDetails] = useState([])
+  const [orderProductList, setOrderProductList] = useState([])
+  const [show, setShow] = useState(false)
+  console.log("orderData", orderData)
   const [confirmDeleteModal, setConfirmDeleteModal] = useState({
     visible: false,
     orderId: null,
@@ -29,10 +35,31 @@ const OrderList = () => {
         }
       );
       setOrderData(response.data.orders);
+
     } catch (error) {
       console.log(error);
     }
   };
+
+  const orderDetails = async (id) => {
+    setShow(true)
+
+    console.log("orderId", id)
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_API_KEY}/api/v1/order/${id}`, {
+        headers: {
+          Authorization: token,
+        },
+      });
+      // console.log(res);
+      setOrderDetails(res?.data?.order)
+      setOrderProductList(res?.data?.order?.orderItems)
+    } catch (error) {
+      console.log(error)
+      toast.error(error?.response?.data?.message)
+    }
+
+  }
 
   const showConfirmDeleteModal = (orderId) => {
     setConfirmDeleteModal({ visible: true, orderId });
@@ -41,8 +68,7 @@ const OrderList = () => {
   const handleConfirmDelete = async () => {
     try {
       const response = await axios.delete(
-        `${import.meta.env.VITE_API_KEY}/api/v1/admin/order/${
-          confirmDeleteModal.orderId
+        `${import.meta.env.VITE_API_KEY}/api/v1/admin/order/${confirmDeleteModal.orderId
         }`,
         {
           headers: {
@@ -110,8 +136,8 @@ const OrderList = () => {
     },
     {
       title: "Price",
-      dataIndex: "itemsPrice",
-      key: "itemsPrice",
+      dataIndex: "totalPrice",
+      key: "totalPrice",
     },
     {
       title: "orderStatus",
@@ -136,6 +162,12 @@ const OrderList = () => {
           >
             edit
           </button>
+          <button
+            onClick={() => orderDetails(orderId)}
+            className="btn btn-primary m-1"
+          >
+            Order Details
+          </button>
         </>
       ),
     },
@@ -144,7 +176,7 @@ const OrderList = () => {
   return (
     <>
       <h3>Get all Orderlist</h3>
-      <Table dataSource={dataSource} columns={columns} />;
+      <Table dataSource={dataSource} columns={columns} />
       <Modal
         title="Confirm Delete"
         visible={confirmDeleteModal.visible}
@@ -173,6 +205,84 @@ const OrderList = () => {
           <Select.Option value="Delivered">Delivered</Select.Option>
         </Select>
       </Modal>
+
+
+      <div className={show ? "orderdetails-container" : "d-none1"} >
+        <div className="closebutton">
+
+          <button onClick={() => setShow(false)}>close</button>
+        </div>
+        <div className="">
+
+          <div className="d-flex" style={{ width: "100%", overflow: "auto" }}>
+            {
+              orderProductList.map((ele, ind) => {
+                return (
+                  <>
+                    <Col className="m-2" xs={12} sm={6} md={4} lg={3}>
+                      <Card >
+                        <Card.Img variant="top" src={ele?.image} />
+                        <Card.Body>
+                          <Card.Title> Product Name:-{ele?.name}</Card.Title>
+                          <Card.Text className="pcolor">
+                            Price:-{ele?.price}
+                          </Card.Text>
+                          <Card.Text className="pcolor">
+                            quantity:-{ele?.quantity}
+                          </Card.Text>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  </>
+                )
+              })
+            }
+
+
+          </div>
+          <br />
+
+          <Card >
+
+            <Card.Body>
+              <Card.Title>Address </Card.Title>
+              <Card.Text className="pcolor m-0">
+                Name:-{orderDetail?.shippingInfo?.name}
+              </Card.Text>
+              <Card.Text className="pcolor m-0">
+                Address:-{orderDetail?.shippingInfo?.address}
+              </Card.Text>
+              <Card.Text className="pcolor m-0">
+                City:-{orderDetail?.shippingInfo?.city}
+              </Card.Text>
+              <Card.Text className="pcolor m-0">
+                mobile:-{orderDetail?.shippingInfo?.mobile}
+              </Card.Text>
+              <Card.Text className="pcolor m-0">
+                pincode:-{orderDetail?.shippingInfo?.pincode}
+              </Card.Text>
+
+            </Card.Body>
+          </Card>
+          <br />
+          <Card >
+
+            <Card.Body>
+              <Card.Title>Payment Amount</Card.Title>
+              <Card.Text className="pcolor m-0">
+                ShippingPrice:-{orderDetail?.shippingPrice}
+              </Card.Text>
+              <Card.Text className="pcolor m-0">
+                TotalPrice:-{orderDetail?.totalPrice}
+              </Card.Text>
+
+
+            </Card.Body>
+          </Card>
+
+        </div>
+
+      </div>
     </>
   );
 };

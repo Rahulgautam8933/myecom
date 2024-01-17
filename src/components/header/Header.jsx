@@ -36,7 +36,7 @@ const Header = () => {
     // const token = Cookies.get("UserToken");
     // setToken(token);
     updateCartCount(); // Initial update
-  }, [updateCartCount, token, cartCount, logout]);
+  }, []);
   return (
     <>
       <div className="navbarcontainer">

@@ -88,7 +88,7 @@ const AppStateProvider = ({ children }) => {
         console.error("Invalid cart format:", parsedCart);
       }
     }
-  }, [cart, addToCart, removeFromCart, token]);
+  }, []);
 
   useEffect(() => {
     userdetails();

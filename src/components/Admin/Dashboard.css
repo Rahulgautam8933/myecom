@@ -1,3 +1,29 @@
-.dashboard{
+.dashboard {
     padding-top: 6rem;
+}
+
+.d-none1 {
+    display: none;
+}
+
+.orderdetails-container {
+    /* position: absolute; */
+    /* top: 50%;
+    left: 50%; */
+    width: 100%;
+    padding: 1rem;
+    /* transform: translate(-50%, -50%); */
+    margin: 1rem auto;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    gap: 0.6rem;
+    /* align-items: center; */
+    /* margin: 1rem; */
+    /* background-color: white; */
+    box-shadow: 1px 1px 12px 1px rgb(221, 221, 226);
+}
+
+.pcolor {
+    color: black;
 }
