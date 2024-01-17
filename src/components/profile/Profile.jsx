@@ -3,7 +3,7 @@ import "./Profile.css";
 import { Col, Row } from "react-bootstrap";
 import { useAppState } from "../../context/AppState";
 const Profile = () => {
-  const { product, loading, profile } = useAppState();
+  const { profile } = useAppState();
   console.log(profile);
   return (
     <div>

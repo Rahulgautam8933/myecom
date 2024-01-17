@@ -19,6 +19,7 @@ import OrderDetails from "./components/orders/myOrderDetails/OrderDetails";
 import Footer from "./components/footer/Footer";
 import Dashboard from "./components/Admin/Dashboard";
 import Profile from "./components/profile/Profile";
+import { AppStateProvider } from "./context/AppState";
 
 function App() {
   return (
@@ -26,26 +27,29 @@ function App() {
       <div>
         <Toaster />
       </div>
+      <AppStateProvider>
 
-      <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/registration" element={<Registeration />} />
-          <Route path="/shop" element={<ProductList />} />
-          <Route path="/details/:id" element={<ProductDetails />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/checkOut" element={<CheckOut />} />
-          <Route path="/confirmOrder" element={<ConfirmOrder />} />
-          <Route path="/success" element={<SuccessOrder />} />
-          <Route path="/myOrders" element={<MyOrders />} />
-          <Route path="/myOrder/:id" element={<OrderDetails />} />
-          <Route path="/admin" element={<Dashboard />}></Route>
-          <Route path="/profile" element={<Profile />}></Route>
-        </Routes>
-        <Footer />
-      </Router>
+
+        <Router>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/registration" element={<Registeration />} />
+            <Route path="/shop" element={<ProductList />} />
+            <Route path="/details/:id" element={<ProductDetails />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkOut" element={<CheckOut />} />
+            <Route path="/confirmOrder" element={<ConfirmOrder />} />
+            <Route path="/success" element={<SuccessOrder />} />
+            <Route path="/myOrders" element={<MyOrders />} />
+            <Route path="/myOrder/:id" element={<OrderDetails />} />
+            <Route path="/admin" element={<Dashboard />}></Route>
+            <Route path="/profile" element={<Profile />}></Route>
+          </Routes>
+          <Footer />
+        </Router>
+      </AppStateProvider>
     </>
   );
 }
