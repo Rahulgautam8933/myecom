@@ -1,39 +1,79 @@
 import { Table } from "antd";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const AllProducts = () => {
+
+
+  const [product, setProduct] = useState([]);
+
+  const getAllProduct = async () => {
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_API_KEY}/api/v1/products`);
+      console.log(res.data.products)
+      setProduct(res.data.products)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getAllProduct();
+  }, [])
+
+
   // table
-  const dataSource = [
-    {
-      key: "1",
-      name: "Mike",
-      age: 32,
-      address: "10 Downing Street",
-    },
-    {
-      key: "2",
-      name: "John",
-      age: 42,
-      address: "10 Downing Street",
-    },
-  ];
+  const dataSource =
+    product
+    ;
 
   const columns = [
     {
-      title: "Name",
+      title: "Product Name",
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
+      title: "category",
+      dataIndex: "category",
+      key: "category",
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
+      title: "price",
+      dataIndex: "price",
+      key: "price",
     },
+    {
+      title: "Stock",
+      dataIndex: "Stock",
+      key: "Stock",
+    },
+
+    {
+      title: "Action",
+      dataIndex: "_id",
+      key: "action",
+      render: (orderId) => (
+        <>
+          <button
+
+            className="btn btn-primary m-1"
+          >
+            delete
+          </button>
+          <button
+
+            className="btn btn-primary m-1"
+          >
+            update
+          </button>
+
+        </>
+      ),
+    },
+
+
+
   ];
   // table
 

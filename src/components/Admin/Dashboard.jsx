@@ -13,6 +13,7 @@ import AllProducts from "./AllProducts";
 import AdminDashboard from "./AdminDashboard";
 import OrderList from "./OrderList";
 import UserList from "./UserList";
+import OrderDEtails1 from "./OrderDEtails1";
 const { Header, Sider, Content } = Layout;
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -58,11 +59,7 @@ const Dashboard = () => {
                 icon: <UploadOutlined />,
                 label: "UserList",
               },
-              {
-                key: "5",
-                icon: <UploadOutlined />,
-                label: "UserList",
-              },
+
               {
                 key: "6",
                 icon: <UploadOutlined />,
@@ -72,23 +69,7 @@ const Dashboard = () => {
           />
         </Sider>
         <Layout>
-          {/* <Header
-                    style={{
-                        padding: 0,
-                        background: colorBgContainer,
-                    }}
-                >
-                    <Button
-                        type="text"
-                        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                        onClick={() => setCollapsed(!collapsed)}
-                        style={{
-                            fontSize: '16px',
-                            width: 64,
-                            height: 64,
-                        }}
-                    />
-                </Header> */}
+
           <Content
             style={{
               margin: "8px 16px",
@@ -133,9 +114,14 @@ const Dashboard = () => {
                 <UserList />
               </div>
             )}
+            {selectedKey === "5" && (
+              <div>
+                <OrderDEtails1 />
+              </div>
+            )}
             {selectedKey === "6" && (
               <div>
-                <OrderList />
+                <OrderList selectedKey={setSelectedKey} />
               </div>
             )}
           </Content>
