@@ -1,3 +1,17 @@
-.profileimg img{
-width: 60%;
-}
+.profileimg {
+    /* width: 60%; */
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    }
+    .profileimg img{
+    width: 100%;
+    }
+    
+    .profilecontainer{
+        width: 90%;
+        margin: auto;
+        padding-top: 5rem;
+    }

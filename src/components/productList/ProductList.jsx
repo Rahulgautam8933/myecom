@@ -9,11 +9,15 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { useAppState } from "../../context/AppState";
 import Loading from "../loading/Loading";
+import { Pagination } from "antd";
 const ProductList = () => {
   const { product, loading } = useAppState();
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 8; // Adjust this based on the number of products you want to show per page
 
   // const getproduct = async () => {
   //   try {
@@ -41,6 +45,16 @@ const ProductList = () => {
 
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
+  };
+
+  const onPageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const getVisibleProducts = () => {
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    return filteredProducts.slice(startIndex, endIndex);
   };
   return (
     <>
@@ -79,7 +93,7 @@ const ProductList = () => {
           ) : (
             <Col>
               <Row>
-                {filteredProducts.map((ele, ind) => {
+                {getVisibleProducts().map((ele, ind) => {
                   return (
                     <>
                       <Col xs={12} sm={6} md={4} lg={3}>
@@ -95,6 +109,13 @@ const ProductList = () => {
                   );
                 })}
               </Row>
+              <Pagination
+                defaultCurrent={1}
+                current={currentPage}
+                pageSize={pageSize}
+                total={filteredProducts.length}
+                onChange={onPageChange}
+              />
             </Col>
           )}
         </Row>
