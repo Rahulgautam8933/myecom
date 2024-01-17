@@ -5,13 +5,15 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import './Dashboard.css'
 import { Card, Col, Row } from "react-bootstrap";
-const OrderList = () => {
+import OrderDEtails1 from "./OrderDEtails1";
+const OrderList = ({ selectedKey }) => {
   const token = Cookies.get("UserToken");
   const [orderData, setOrderData] = useState([]);
   const [deletedProductId, setDeletedProductId] = useState(null);
   const [orderDetail, setOrderDetails] = useState([])
   const [orderProductList, setOrderProductList] = useState([])
   const [show, setShow] = useState(false)
+  const [id1, setid1] = useState()
   console.log("orderData", orderData)
   const [confirmDeleteModal, setConfirmDeleteModal] = useState({
     visible: false,
@@ -43,6 +45,8 @@ const OrderList = () => {
 
   const orderDetails = async (id) => {
     setShow(true)
+    // selectedKey("5")
+    setid1(id)
 
     console.log("orderId", id)
     try {
@@ -206,7 +210,7 @@ const OrderList = () => {
         </Select>
       </Modal>
 
-
+      {/* <OrderDEtails1 id={id1} /> */}
       <div className={show ? "orderdetails-container" : "d-none1"} >
         <div className="closebutton">
 
