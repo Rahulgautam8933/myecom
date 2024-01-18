@@ -7,6 +7,7 @@ import ChangePassword from "./ChangePassword";
 import axios from "axios";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
+import { Button, Modal } from "antd";
 const Profile = () => {
   const { product, loading, profile } = useAppState();
   const token = Cookies.get("UserToken");
@@ -14,6 +15,7 @@ const Profile = () => {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [modal2Open, setModal2Open] = useState(false);
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
@@ -60,7 +62,7 @@ const Profile = () => {
             <h6>{profile.email}</h6>
             <br />
             <div className="d-flex gap-2">
-              <button>Edit Profile</button>
+              <button onClick={() => setModal2Open(true)}>Edit Profile</button>
               <button onClick={handleShowModal}>Change password</button>
             </div>
           </Col>
@@ -71,6 +73,21 @@ const Profile = () => {
           />
         </Row>
       </div>
+
+
+
+
+      <Modal
+        title="Vertically centered modal dialog"
+        centered
+        open={modal2Open}
+        onOk={() => setModal2Open(false)}
+        onCancel={() => setModal2Open(false)}
+      >
+
+      </Modal>
+
+
     </>
   );
 };
