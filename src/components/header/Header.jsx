@@ -14,17 +14,28 @@ import Cart from "../cart/Cart";
 import { useAppState } from "../../context/AppState";
 const Header = () => {
   const navigator = useNavigate();
-  const { product, loading, profile, token } = useAppState();
-  const [cartCount, setCartCount] = useState(0);
+
+  const { product,
+    loading,
+    cart,
+    addToCart,
+    removeFromCart,
+    updateItemCount,
+    calculateTotal,
+    // updateCartCount,
+    cartCount,
+    profile,
+    token, } = useAppState();
+  // const [cartCount, setCartCount] = useState(0);
   const [sidebar, setSidebar] = useState(true);
   // const [token, setToken] = useState(null);
-  const updateCartCount = () => {
-    const storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-      const parsedCart = JSON.parse(storedCart);
-      setCartCount(parsedCart.length);
-    }
-  };
+  // const updateCartCount = () => {
+  //   const storedCart = localStorage.getItem("cart");
+  //   if (storedCart) {
+  //     const parsedCart = JSON.parse(storedCart);
+  //     setCartCount(parsedCart.length);
+  //   }
+  // };
 
   const logout = () => {
     Cookies.remove("UserToken");
@@ -35,7 +46,7 @@ const Header = () => {
   useEffect(() => {
     // const token = Cookies.get("UserToken");
     // setToken(token);
-    updateCartCount(); // Initial update
+    // updateCartCount(); // Initial update
   }, []);
   return (
     <>
