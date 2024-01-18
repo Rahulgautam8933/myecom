@@ -1,4 +1,13 @@
-.myproductcontainer{
+.myproductcontainer {
     width: 90%;
     margin: 6rem auto;
+}
+
+.productcardContainer {
+    display: flex;
+}
+
+.productcard {
+
+    box-shadow: 1px 1px 12px 1px rgb(245, 242, 242);
 }

@@ -15,23 +15,10 @@ const ConfirmOrder = () => {
   const [token, settoken] = useState(0);
 
   console.log(cart);
-  console.log(add);
+  console.log("dfgdfgdfgdfgdg", add);
   console.log("tokens", token);
 
-  //   const removeFromCart = (index) => {
-  //     const updatedCart = [...cart];
-  //     updatedCart.splice(index, 1);
-  //     setCart(updatedCart);
 
-  //     localStorage.setItem("cart", JSON.stringify(updatedCart));
-  //   };
-
-  //   const updateItemCount = (index, newCount) => {
-  //     const updatedCart = [...cart];
-  //     updatedCart[index].count = newCount;
-  //     setCart(updatedCart);
-  //     localStorage.setItem("cart", JSON.stringify(updatedCart));
-  //   };
 
   const calculateTotal = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -83,6 +70,7 @@ const ConfirmOrder = () => {
   useEffect(() => {
     const token = Cookies.get("UserToken");
     const storedCart = localStorage.getItem("cart");
+
     const orderInfo = JSON.parse(localStorage.getItem("ShippingAddress"));
     setAdd(orderInfo);
     settoken(token);
@@ -103,9 +91,10 @@ const ConfirmOrder = () => {
         <Row>
           <Col style={{ padding: "1rem 2rem" }}>
             <h3>Shipping Info</h3>
-            <p>Name:-</p>
-            <p>Mobile Number:-</p>
-            <p>Address:-</p>
+            <p className="m-0">Name:- {add?.name}</p>
+            <p className="m-0">Mobile Number:- <b>+91</b>{add?.mobile}</p>
+            <p className="m-0">Address:- {add?.address} {add?.city} {add?.pincode} </p>
+
             <h3>Your Cart Items</h3>
 
             <div>
