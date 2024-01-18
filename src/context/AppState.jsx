@@ -2,6 +2,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import React, { createContext, useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const AppStateContext = createContext();
 
@@ -9,27 +10,48 @@ const AppStateProvider = ({ children }) => {
   let [product, setProduct] = useState([]);
   let [loading, setLoading] = useState(true);
   let [profile, setProfile] = useState([]);
-
+  const [cartCount, setCartCount] = useState(0);
   const token = Cookies.get("UserToken");
-
-  //
-
   const [cart, setCart] = useState([]);
 
-  const addToCart = (item) => {
-    // Implement your logic to add items to the cart
-    const updatedCart = [...cart, item];
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  const addToCart = (detailData, count) => {
+    if (detailData) {
+      const { _id, name, price, images, Stock } = detailData;
+      const updatedCart = [
+        ...cart,
+        {
+          product: _id,
+          name,
+          price,
+          image: images[0].url,
+          stock: Stock,
+          quantity: count,
+        },
+      ];
+      setCart(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    }
+    toast.success("Successfully Added To Cart");
+
   };
 
   const removeFromCart = (index) => {
-    // Implement your logic to remove items from the cart
     const updatedCart = [...cart];
     updatedCart.splice(index, 1);
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    setCartCount(updatedCart.length);
+    toast.success("Cart Item Removed");
   };
+
+
+  // const updateCartCount = () => {
+  //   const storedCart = localStorage.getItem("cart");
+  //   if (storedCart) {
+  //     const parsedCart = JSON.parse(storedCart);
+  //     setCartCount(parsedCart.length);
+  //   }
+  // };
 
   const updateItemCount = (index, newCount) => {
     // Implement your logic to update item count in the cart
@@ -44,7 +66,7 @@ const AppStateProvider = ({ children }) => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
-  //
+
 
   const userdetails = async () => {
     try {
@@ -88,12 +110,19 @@ const AppStateProvider = ({ children }) => {
         console.error("Invalid cart format:", parsedCart);
       }
     }
-  }, []);
 
-  useEffect(() => {
     userdetails();
     getProduct();
   }, []);
+
+  useEffect(() => {
+    // Update cart count when cart changes
+    setCartCount(cart.length);
+  }, [cart]);
+
+  // useEffect(() => {
+
+  // }, []);
 
   const state = {
     product,
@@ -104,6 +133,7 @@ const AppStateProvider = ({ children }) => {
     updateItemCount,
     calculateTotal,
     profile,
+    cartCount,
     token,
   };
 

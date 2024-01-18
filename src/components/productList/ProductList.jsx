@@ -1,40 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./ProductList.css";
 import ProductCard from "../productCard/ProductCard";
 import { Col, Row } from "react-bootstrap";
-import img1 from "../../assets/camera.png";
-import img2 from "../../assets/mobile.png";
 import { IoIosSearch } from "react-icons/io";
 import Form from "react-bootstrap/Form";
-import axios from "axios";
 import { useAppState } from "../../context/AppState";
 import Loading from "../loading/Loading";
 import { Pagination } from "antd";
 const ProductList = () => {
   const { product, loading } = useAppState();
-  const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
-
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 8; // Adjust this based on the number of products you want to show per page
-
-  // const getproduct = async () => {
-  //   try {
-  //     // const data = await axios.get(`https://dummyjson.com/products`);
-  //     const data = await axios.get(
-  //       `${import.meta.env.VITE_API_KEY}/api/v1/products`
-  //     );
-  //     console.log(data?.data?.products);
-  //     setProducts(data?.data?.products);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getproduct();
-  // }, []);
+  const pageSize = 8;
 
   const filteredProducts = product.filter(
     (product) =>

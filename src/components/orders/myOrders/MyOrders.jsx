@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 const MyOrders = () => {
   const navigator = useNavigate();
   const token = Cookies.get("UserToken");
-  //   const [token, setToken] = useState(null);
   const [orders, setOrders] = useState([]);
 
   const getorders = async () => {
@@ -62,11 +61,8 @@ const MyOrders = () => {
       ),
     },
   ];
-
   useEffect(() => {
-    // const token = Cookies.get("UserToken");
     getorders();
-    // setToken(token);
   }, []);
 
   return (
