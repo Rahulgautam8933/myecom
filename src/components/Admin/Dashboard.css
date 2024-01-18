@@ -27,3 +27,13 @@
 .pcolor {
     color: black;
 }
+
+
+
+
+/* order details */
+
+.card-box {
+    display: flex;
+    flex-direction: row;
+}

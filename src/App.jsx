@@ -20,6 +20,7 @@ import Footer from "./components/footer/Footer";
 import Dashboard from "./components/Admin/Dashboard";
 import Profile from "./components/profile/Profile";
 import { AppStateProvider } from "./context/AppState";
+import ForgetPassword from "./pages/login/ForgetPassword";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
             <Route path="/myOrder/:id" element={<OrderDetails />} />
             <Route path="/admin" element={<Dashboard />}></Route>
             <Route path="/profile" element={<Profile />}></Route>
+            <Route path="/password/reset/:id" element={<ForgetPassword />}></Route>
           </Routes>
           <Footer />
         </Router>

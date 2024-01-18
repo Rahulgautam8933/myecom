@@ -5,12 +5,18 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
+import { Button, Modal } from "antd";
 const Login = () => {
   const navigator = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
+
+  const [email, setEmial] = useState();
+  // console.log("onchnge forget password", email)
+
+  const [modal2Open, setModal2Open] = useState(false);
 
   const onchangeInput = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
@@ -33,6 +39,23 @@ const Login = () => {
       toast.error(error?.response?.data?.message);
     }
   };
+
+
+  const forgetPassword = async () => {
+
+    try {
+      const data = await axios.post(`${import.meta.env.VITE_API_KEY}/api/v1/password/forgot`, {
+        email
+      })
+      console.log(data);
+
+      toast.success(data.data.message)
+      setModal2Open(false)
+    } catch (error) {
+      console.log(error)
+      toast.error(error.response.data.message)
+    }
+  }
 
 
 
@@ -60,7 +83,7 @@ const Login = () => {
             onChange={onchangeInput}
           />
           <div style={{ textAlign: "left" }}>
-            <h6>Forgot your password?</h6>
+            <h6 style={{ cursor: "pointer" }} onClick={() => setModal2Open(true)} >Forgot your password?</h6>
           </div>
           <button onClick={submitData}>Login</button>
           <button
@@ -69,8 +92,21 @@ const Login = () => {
           >
             Don’t have an account? <p style={{ margin: "0" }}> Register now </p>
           </button>
+
         </form>
       </div>
+      <Modal
+        // title="Vertically centered modal dialog"
+        centered
+        open={modal2Open}
+        onOk={() => forgetPassword()}
+        onCancel={() => setModal2Open(false)}
+      >
+        <div class="mb-3">
+          <label for="formGroupExampleInput" class="form-label">Email Id</label>
+          <input name="email" value={email} onChange={(e) => setEmial(e.target.value)} className="form-control" type="text" placeholder="Enter Your Email" />
+        </div>
+      </Modal>
     </>
   );
 };

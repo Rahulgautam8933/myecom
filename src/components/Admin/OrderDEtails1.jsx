@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 import React, { useEffect, useState } from 'react'
 import { Card, Col } from 'react-bootstrap'
 import toast from 'react-hot-toast'
+import ProductCard from '../productCard/ProductCard'
 
 const OrderDEtails1 = (id) => {
     const token = Cookies.get("UserToken");
@@ -46,10 +47,17 @@ const OrderDEtails1 = (id) => {
                             orderProductList.map((ele, ind) => {
                                 return (
                                     <>
+                                        <ProductCard
+                                            img={ele?.image}
+                                            productname={ele?.name}
+                                            price={ele?.price}
+                                            description={ele?.quantity}
+
+                                        />
                                         <Col className="m-2" xs={12} sm={6} md={4} lg={3}>
-                                            <Card >
-                                                <Card.Img variant="top" src={ele?.image} />
-                                                <Card.Body>
+                                            <Card className='card-box' >
+                                                <img src={ele?.image} />
+                                                <div>
                                                     <Card.Title> Product Name:-{ele?.name}</Card.Title>
                                                     <Card.Text className="pcolor">
                                                         Price:-{ele?.price}
@@ -57,7 +65,7 @@ const OrderDEtails1 = (id) => {
                                                     <Card.Text className="pcolor">
                                                         quantity:-{ele?.quantity}
                                                     </Card.Text>
-                                                </Card.Body>
+                                                </div>
                                             </Card>
                                         </Col>
                                     </>

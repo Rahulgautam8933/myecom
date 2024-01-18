@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import './Dashboard.css'
 import { Card, Col, Row } from "react-bootstrap";
 import OrderDEtails1 from "./OrderDEtails1";
+import ProductCard from "../productCard/ProductCard";
 const OrderList = ({ selectedKey }) => {
   const token = Cookies.get("UserToken");
   const [orderData, setOrderData] = useState([]);
@@ -224,6 +225,18 @@ const OrderList = ({ selectedKey }) => {
                 return (
                   <>
                     <Col className="m-2" xs={12} sm={6} md={4} lg={3}>
+
+                      <ProductCard
+                        img={ele?.image}
+                        productname={ele?.name}
+                        price={ele?.price}
+                        description={ele?.quantity}
+                        id={ele?.product}
+
+
+                      />
+                    </Col>
+                    {/* <Col className="m-2" xs={12} sm={6} md={4} lg={3}>
                       <Card >
                         <Card.Img variant="top" src={ele?.image} />
                         <Card.Body>
@@ -236,7 +249,7 @@ const OrderList = ({ selectedKey }) => {
                           </Card.Text>
                         </Card.Body>
                       </Card>
-                    </Col>
+                    </Col> */}
                   </>
                 )
               })
