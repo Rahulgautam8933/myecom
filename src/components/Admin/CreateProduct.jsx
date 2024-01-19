@@ -2,6 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
+import toast from "react-hot-toast";
 
 const CreateProduct = () => {
   const token = Cookies.get("UserToken");
@@ -71,8 +72,10 @@ const CreateProduct = () => {
       );
 
       console.log(data);
+      toast.success("Product Added successfully")
     } catch (error) {
       console.log(error);
+      toast.error(error.response.data.message)
     }
   };
 

@@ -120,9 +120,7 @@ const AppStateProvider = ({ children }) => {
     setCartCount(cart.length);
   }, [cart]);
 
-  // useEffect(() => {
 
-  // }, []);
 
   const state = {
     product,
@@ -132,6 +130,7 @@ const AppStateProvider = ({ children }) => {
     removeFromCart,
     updateItemCount,
     calculateTotal,
+    getProduct,
     profile,
     cartCount,
     token,
