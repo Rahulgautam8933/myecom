@@ -58,7 +58,7 @@ const ConfirmOrder = () => {
       navigator("/success");
     } catch (error) {
       toast.error(error?.response?.data?.message);
-
+      navigator('/login')
       console.log(error);
     }
 
