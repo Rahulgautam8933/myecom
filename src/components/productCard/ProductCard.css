@@ -37,14 +37,14 @@
 }
 
 .card1 .cardimg {
-    height: 30vh;
+    /* height: 30vh; */
     object-fit: contain;
 }
 
 @media (max-width:760px) and (min-width:0px) {
 
     .card1 .cardimg {
-        height: 40vh;
+        /* height: 40vh; */
         width: 100%;
         object-fit: contain;
     }

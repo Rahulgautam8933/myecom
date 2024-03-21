@@ -72,10 +72,10 @@ const CreateProduct = () => {
       );
 
       console.log(data);
-      toast.success("Product Added successfully")
+      toast.success("Product Added successfully");
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message)
+      toast.error(error.response.data.message);
     }
   };
 
@@ -145,9 +145,10 @@ const CreateProduct = () => {
                   aria-label="Default select example"
                 >
                   <option>Select Category</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option value="Laptop">Laptop</option>
+                  <option value="Mobile">Mobile</option>
+                  <option value="Clothes">Clothes</option>
+                  <option value="electronics">electronics</option>
                 </select>
               </div>
             </Col>

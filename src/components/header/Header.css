@@ -191,3 +191,26 @@
 
     }
 }
+
+
+
+@media (min-width:1px) and (max-width:768px) {
+   .imglogo{
+    width: 30vw;
+   }
+   .menubar svg{
+    font-size: 7vw;
+   }
+   .navbarcontainer{
+    padding: 3vw;
+   }
+   .carticon {
+    font-size: 4vw;
+   }
+   .carticon svg{
+    font-size: 7vw;
+   }
+   .profile svg{
+    font-size: 7vw;
+   }
+}

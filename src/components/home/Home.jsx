@@ -7,8 +7,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import home1 from "../../assets/home1.jpg";
-import home2 from "../../assets/home2.jpg";
+import home1 from "../../assets/home1.png";
+import home2 from "../../assets/home1.jpg";
+import home3 from "../../assets/home2.jpg";
 import "swiper/css/navigation";
 import Loading from "../loading/Loading";
 const Home = () => {
@@ -46,7 +47,20 @@ const Home = () => {
             </div>
           </SwiperSlide>
           <SwiperSlide className="sliderimg" style={{ position: "relative" }}>
-            <img src={home1} alt="" />
+            <img src={home2} alt="" />
+
+            <div className="homecontent-button">
+              <div className="carousel-caption  d-md-block contentitem">
+                <h3>Exclusive Ceramics & Art</h3>
+                <p>
+                  Some representative placeholder content for the third slide.
+                </p>
+                <button>Shop Now</button>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide className="sliderimg" style={{ position: "relative" }}>
+            <img src={home3} alt="" />
 
             <div className="homecontent-button">
               <div className="carousel-caption  d-md-block contentitem">
@@ -69,7 +83,7 @@ const Home = () => {
         ) : (
           <Row>
             {lastFourProducts.map((item) => (
-              <Col xs={12} sm={6} md={4} lg={3}>
+              <Col xs={6} sm={6} md={4} lg={3}>
                 <ProductCard
                   img={item?.thumbnail?.url}
                   productname={item?.name}

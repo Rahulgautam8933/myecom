@@ -74,7 +74,7 @@ const ProductList = () => {
                 {getVisibleProducts().map((ele, ind) => {
                   return (
                     <>
-                      <Col xs={12} sm={6} md={4} lg={3}>
+                      <Col xs={6} sm={6} md={4} lg={3}>
                         <ProductCard
                           img={ele?.thumbnail?.url}
                           productname={ele?.name}

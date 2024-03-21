@@ -1,7 +1,13 @@
 .homeMain {
     width: 100%;
     /* height: 100vh; */
+    /* overflow: hidden; */
 
+}
+.sliderimg img{
+    width: 100%;
+    object-fit: cover;
+    height: 82vh;
 }
 
 /* .carousel-item {
@@ -80,11 +86,6 @@ p {
 }
 
 
-
-
-
-
-
 .home-latest-product{
     width: 90%;
     margin: auto;
@@ -92,3 +93,10 @@ p {
 
 
 
+@media (min-width:1px) and (max-width:768px) {
+    .sliderimg img{
+        width: 100%;
+        object-fit: cover;
+        height: 50vw;
+    }
+}
