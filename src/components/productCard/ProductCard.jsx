@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 const ProductCard = ({ img, productname, price, description, id }) => {
   const truncateDescription = (text, limit) => {
-    return text.length > limit ? text.slice(0, limit) + "..." : text;
+    return text?.length > limit ? text.slice(0, limit) + "..." : text;
   };
   return (
     <>
