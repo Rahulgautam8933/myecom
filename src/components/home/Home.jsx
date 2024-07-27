@@ -15,7 +15,7 @@ import Loading from "../loading/Loading";
 const Home = () => {
   const { product, loading } = useAppState();
   console.log(product);
-  const lastFourProducts = product.slice(-4).reverse();
+  const lastFourProducts = product?.slice(-4)?.reverse();
   return (
     <>
       <div className="homeMain">
@@ -82,7 +82,7 @@ const Home = () => {
           <Loading />
         ) : (
           <Row>
-            {lastFourProducts.map((item) => (
+            {lastFourProducts?.map((item) => (
               <Col xs={6} sm={6} md={4} lg={3}>
                 <ProductCard
                   img={item?.thumbnail?.url}
